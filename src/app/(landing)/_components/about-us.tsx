@@ -1,15 +1,30 @@
 "use client";
+
 import SectionHeader from "@/components/section-header";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
+import { motion } from "motion/react";
 
 export default function AboutUs() {
   const router = useRouter();
+
   return (
-    <section className="py-24 px-4 flex flex-col md:flex-row items-center justify-start gap-16 my-10 w-full lg:w-6xl mx-auto">
-      <div className="flex flex-col items-center md:items-start justify-center gap-4">
+    <motion.section
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.3 }}
+      className="py-24 px-4 flex flex-col md:flex-row items-center justify-start gap-16 my-10 w-full lg:w-6xl mx-auto"
+    >
+      <motion.div
+        initial={{ opacity: 0, x: -30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        viewport={{ once: true, amount: 0.3 }}
+        className="flex flex-col items-center md:items-start justify-center gap-4"
+      >
         <SectionHeader title="About Us" />
         <h1 className="text-2xl text-center md:text-left md:text-5xl mt-4">
           Serving Ghana with Uncommon Kindness
@@ -34,10 +49,14 @@ export default function AboutUs() {
         >
           Discover Our Impact
         </Button>
-      </div>
-
-      {/* image container */}
-      <div className="flex items-center justify-center gap-4 ">
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, x: 30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, delay: 0.3 }}
+        viewport={{ once: true, amount: 0.3 }}
+        className="flex items-center justify-center gap-4"
+      >
         <div className="w-[22rem] lg:w-[30rem] bg-slate-900/40 rounded-lg p-2 flex flex-col items-center justify-center gap-4">
           <Image
             src="https://plus.unsplash.com/premium_photo-1663054774427-55adfb2be76f?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -48,7 +67,7 @@ export default function AboutUs() {
             priority
           />
         </div>
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   );
 }
