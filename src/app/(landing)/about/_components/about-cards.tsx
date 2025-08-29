@@ -8,7 +8,7 @@ export default function AboutCards({ data }: { readonly data: AboutCard }) {
 		>
 			<Link
 				href="/"
-				className="self-end text-lg px-6 py-2 border border-white rounded-full hover:bg-white hover:text-blue-900 transition-all"
+				className="self-end px-4 py-2 border border-white rounded-full hover:bg-white hover:text-blue-900 transition-all text-right"
 			>
 				{data.buttonText}
 			</Link>
