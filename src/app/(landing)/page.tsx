@@ -15,7 +15,7 @@ export default function Home() {
       <WhatWeDo />
       <Project />
       <Support />
-      <Star data={{ start: 0, end: 3 }} />
+      <Star data={{ start: 0, end: 4 }} />
       <OurEvent />
       <FrequentlyAskedQuestions />
     </>

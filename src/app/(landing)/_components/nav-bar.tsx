@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { NavLinks } from "@/constants/nav-links";
 import { usePathname } from "next/navigation";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 
 export default function Navbar() {
   const [showNav, setShowNav] = useState(false);
@@ -50,7 +50,7 @@ export default function Navbar() {
               priority
             />
           </Link>
-          <div className="hidden flex-row items-center gap-6 md:flex">
+          <div className="hidden flex-row items-center gap-6 lg:flex">
             {NavLinks.map((link) => (
               <Link
                 key={link.id}
@@ -67,23 +67,23 @@ export default function Navbar() {
               </Link>
             ))}
           </div>
-          <div>
+          {/* //TODO: Uncomment when needed to integrate with payment gateway */}
+          {/* <div>
             <Button
               variant="outline"
               size="lg"
-              className="cursor-pointer font-semibold tracking-widest px-10 py-6 hidden md:inline-flex rounded-lg bg-blue-900 text-white duration-150 ease-in hover:bg-blue-800 hover:text-white">
+              className="cursor-pointer font-semibold tracking-widest px-10 py-6 hidden lg:inline-flex rounded-lg bg-blue-900 text-white duration-150 ease-in hover:bg-blue-800 hover:text-white">
               Donate
             </Button>
-          </div>
-
+          </div> */}{" "}
           <button
             onClick={() => setShowNav((isShown) => !isShown)}
-            className="block md:hidden"
+            className="block lg:hidden"
             type="button">
             {showNav ? <X /> : <Menu />}
           </button>
           <div
-            className={`absolute border md:hidden ${visible} left-0 top-[4rem] z-50 mt-3 flex h-[calc(100vh-3.6rem)] w-full flex-col justify-between  bg-white pb-3 transition-transform duration-700 ease-in-out lg:relative lg:top-0 lg:w-full lg:translate-x-0`}>
+            className={`absolute border lg:hidden ${visible} left-0 top-[4rem] z-50 mt-3 flex h-[calc(100vh-3.6rem)] w-full flex-col justify-between  bg-white pb-3 transition-transform duration-700 ease-in-out lg:relative lg:top-0 lg:w-full lg:translate-x-0`}>
             <div className="m-4 flex flex-col gap-5 pl-6">
               {NavLinks.map((link) => (
                 <Link
