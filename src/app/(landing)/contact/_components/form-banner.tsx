@@ -17,7 +17,7 @@ export default function FormBanner() {
         alt="Contact-us-form-image"
         width={600}
         height={400}
-        className="rounded-lg w-full h-full object-cover"
+        className="w-full h-full object-cover"
         decoding="async"
         loading="lazy"
       />
