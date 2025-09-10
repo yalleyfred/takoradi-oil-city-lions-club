@@ -67,7 +67,7 @@ export default function Navbar() {
               </Link>
             ))}
           </div>
-          //TODO: Uncomment when needed to integrate with payment gateway
+          {/* //TODO: Uncomment when needed to integrate with payment gateway */}
           {/* <div>
             <Button
               variant="outline"
