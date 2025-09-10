@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { NavLinks } from "@/constants/nav-links";
 import { usePathname } from "next/navigation";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 
 export default function Navbar() {
   const [showNav, setShowNav] = useState(false);
@@ -67,15 +67,15 @@ export default function Navbar() {
               </Link>
             ))}
           </div>
-          <div>
+          {/* //TODO: Uncomment when needed to integrate with payment gateway */}
+          {/* <div>
             <Button
               variant="outline"
               size="lg"
               className="cursor-pointer font-semibold tracking-widest px-10 py-6 hidden lg:inline-flex rounded-lg bg-blue-900 text-white duration-150 ease-in hover:bg-blue-800 hover:text-white">
               Donate
             </Button>
-          </div>
-
+          </div> */}{" "}
           <button
             onClick={() => setShowNav((isShown) => !isShown)}
             className="block lg:hidden"

@@ -49,7 +49,7 @@ export default function ContactForm() {
         transition={{ duration: 0.5 }}
         className="flex flex-col items-start justify-start self-stretch gap-4 w-full max-w-[600px] ">
         <div className="flex flex-col lg:items-start w-full lg:gap-4">
-          <h1 className="text-gray-900 font-semibold text-center text-2xl lg:text-4xl leading-11 tracking-tighter">
+          <h1 className="text-gray-900 font-semibold text-center text-3xl lg:text-4xl leading-11 tracking-tighter">
             Get in touch
           </h1>
           <p className="text-gray-600 text-base lg:text-md text-center">
