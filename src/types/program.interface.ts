@@ -6,4 +6,5 @@ export interface UpcomingEvent {
 	location: string;
 	description: string;
 	image: string;
+	details: string;
 }
