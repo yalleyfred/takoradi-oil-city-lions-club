@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import EventList from "./_components/event-list";
 import { EventItem } from "@/types/event.interface";
+import Loader from "@/components/loader";
 
 const data: EventItem[] = [
   {
@@ -104,7 +105,7 @@ const data: EventItem[] = [
 export default async function EventsPage() {
   return (
     <section className="container mx-auto py-10 px-4 md:px-8 lg:px-28 ">
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loader />}>
         <EventList data={data} />
       </Suspense>
     </section>
