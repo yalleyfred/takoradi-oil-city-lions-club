@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import { EventDrawer } from "./event-drawer";
 import { EventItem } from "@/types/event.interface";
 import { EventCard } from "./event-card";
@@ -22,11 +23,34 @@ export default function EventList({ data }: Readonly<Props>) {
         <h1 className="text-2xl font-bold">Events</h1>
       </div>
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {data.map((ev) => (
-          <EventCard key={ev._id} event={ev} onClick={handleOpen} />
+      <motion.div
+        className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+        initial="hidden"
+        animate="visible"
+        variants={{
+          hidden: {},
+          visible: {
+            transition: {
+              staggerChildren: 0.15,
+            },
+          },
+        }}>
+        {data.map((ev, idx) => (
+          <motion.div
+            key={ev._id}
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            whileHover={{ scale: 1.03 }}
+            transition={{
+              type: "keyframes",
+              stiffness: 400,
+              damping: 30,
+              delay: idx * 0.1,
+            }}>
+            <EventCard event={ev} onClick={handleOpen} />
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
 
       <div className="absolute z-50">
         <EventDrawer open={open} onOpenChange={setOpen} event={selected} />
