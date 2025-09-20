@@ -7,9 +7,10 @@ import {
   SheetTitle,
   SheetDescription,
 } from "@/components/ui/sheet";
-import { EventItem } from "@/types/event.interface";
+import { EventItem, EventStatus } from "@/types/event.interface";
 import Image from "next/image";
 import { formatDate } from "@/utils/format-date";
+import Badge from "./badge";
 
 export function EventDrawer({
   open,
@@ -22,10 +23,10 @@ export function EventDrawer({
 }>) {
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent side="right" className="w-full z-50 sm:w-[28rem]">
+      <SheetContent side="left" className=" w-full sm:max-w-sm z-50">
         {event && (
           <div className="flex h-full flex-col overflow-hidden">
-            <div className="relative h-48 w-full overflow-hidden">
+            <div className="relative h-52 w-full overflow-hidden">
               <Image
                 src={event.event_img}
                 alt={event.title}
@@ -36,16 +37,17 @@ export function EventDrawer({
             </div>
             <div className="mt-4 space-y-2 overflow-y-auto">
               <SheetHeader>
-                <SheetTitle>{event.title}</SheetTitle>
+                <SheetTitle className="flex items-center flex-wrap justify-start gap-3">
+                  {event.title}
+                  <Badge status={event.status as EventStatus} />
+                </SheetTitle>
                 <SheetDescription>
                   {event.location} • {formatDate(event.date)}
                 </SheetDescription>
               </SheetHeader>
-
-              <p
-                className="text-sm p-4 leading-relaxed text-muted-foreground whitespace-pre-wrap"
-                dangerouslySetInnerHTML={{ __html: event.description }}
-              />
+              <p className="text-sm  sm:max-w-sm px-4 leading-relaxed text-muted-foreground whitespace-pre-wrap ">
+                {event.description}
+              </p>
             </div>
           </div>
         )}

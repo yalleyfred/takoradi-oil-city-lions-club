@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { EventItem } from "@/types/event.interface";
+import { EventItem, EventStatus } from "@/types/event.interface";
 import { formatDate } from "@/utils/format-date";
+import Badge from "./badge";
 export function EventCard({
   event,
   onClick,
@@ -10,9 +11,10 @@ export function EventCard({
   event: EventItem;
   onClick: (event: EventItem) => void;
 }>) {
-  const status = event.status === "ongoing" ? "bg-blue-600" : "bg-gray-600";
   return (
-    <button onClick={() => onClick(event)} className="block w-full text-left">
+    <button
+      onClick={() => onClick(event)}
+      className="block hover:cursor-pointer w-full text-left">
       <div className="relative h-64 w-full overflow-hidden rounded-lg">
         <Image
           src={event.event_img}
@@ -24,12 +26,10 @@ export function EventCard({
 
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
-        <span
-          className={`absolute right-3 top-3 rounded-full px-3 py-1 text-xs font-medium text-white ${
-            event.status === "upcoming" ? "bg-emerald-600" : status
-          }`}>
-          {event.status}
-        </span>
+        <Badge
+          status={event.status as EventStatus}
+          className={`absolute right-3 top-3 rounded-full px-3 py-1 text-xs flex items-center justify-center font-medium text-white`}
+        />
 
         <div className="absolute inset-x-0 bottom-0 p-4">
           <h3 className="!text-white font-semibold line-clamp-1">
