@@ -35,7 +35,7 @@ export default function Navbar() {
     <header
       className={`sticky bg-white ${
         path !== "/" ? "border-b border-b-neutral-900/20" : ""
-      }  top-0 z-[9999] backdrop-blur-lg ${isScrolled ? "border-b" : ""} 
+      }  top-0 z-10 backdrop-blur-lg ${isScrolled ? "border-b" : ""} 
     `}>
       <nav>
         <div className="flex items-center justify-between px-12 lg:px-52 py-3.5">
