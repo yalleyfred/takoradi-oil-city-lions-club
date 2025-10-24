@@ -3,10 +3,16 @@ export const teamQuery = `*[_type == "team"]{
   name,
   role,
   bio,
-  "image_url": image_url.asset->url,
+  "image_url": coalesce(image.upload.asset._ref, image.url),
   socials[] {
     _key,
     icon_type,
     url
   }
+}`;
+
+export const faqQuery = `*[_type == "faq"]{
+"id": _id,
+question,
+answer
 }`;

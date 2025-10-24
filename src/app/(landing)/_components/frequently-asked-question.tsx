@@ -5,9 +5,13 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { FAQ_QUESTIONS } from "@/constants/faqs.data";
+import { client } from "@/lib/sanity.client";
+import { faqQuery } from "@/lib/sanity.query";
+import { FAQ } from "@/types/faq.type";
 
-export default function FrequentlyAskedQuestions() {
+export default async function FrequentlyAskedQuestions() {
+  const faqs: FAQ[] = await client.fetch(faqQuery);
+
   return (
     <section id="faq" className="p-6 md:p-16 lg:p-28 bg-slate-100 ">
       <div className=" text-center py-4 mb-10">
@@ -16,7 +20,7 @@ export default function FrequentlyAskedQuestions() {
         </h1>
       </div>
       <Accordion type="single" collapsible className="lg:w-6xl mx-auto">
-        {FAQ_QUESTIONS.map((item) => (
+        {faqs.map((item) => (
           <AccordionItem value={item.question} key={item.question}>
             <AccordionTrigger className="text-lg lg:text-2xl text-left leading-[1.4] cursor-pointer hover:bg-blue-800/80 hover:text-white transition-all duration-150 ease-in py-6 px-4 rounded-none hover:no-underline data-[state=open]:bg-blue-900 data-[state=open]:text-white [&[data-state=open]>svg]:text-white">
               <h2 className="font-medium text-lg lg:text-2xl">
