@@ -5,7 +5,7 @@ import { upcomingEvents } from "@/constants/program.data";
 import { UpcomingEvent } from "@/types/program.interface";
 import { Event } from "./event";
 
-export function UpcomingPrograms() {
+export default function UpcomingPrograms() {
   const [currentEventIndex, setCurrentEventIndex] = useState(0);
   const programs: UpcomingEvent[] = upcomingEvents;
   const [direction, setDirection] = useState<"next" | "prev">("next");

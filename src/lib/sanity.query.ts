@@ -16,3 +16,11 @@ export const faqQuery = `*[_type == "faq"]{
 question,
 answer
 }`;
+
+export const testimonialQuery = `*[_type == "testimonial"]{
+"id": _id,
+name,
+role,
+quote,
+"image_url": coalesce(image.upload.asset._ref, image.url),
+}`;
