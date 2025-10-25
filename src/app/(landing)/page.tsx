@@ -2,7 +2,7 @@ import AboutUs from "./_components/about-us";
 import FrequentlyAskedQuestions from "./_components/frequently-asked-question";
 import Hero from "./_components/hero";
 import OurEvent from "./_components/our-event";
-import Project from "./_components/project";
+import ProjectsSection from "./_components/project-section";
 import StarSection from "./_components/star-section";
 import Support from "./_components/support";
 import WhatWeDo from "./_components/what-we-do";
@@ -13,7 +13,7 @@ export default function Home() {
       <Hero />
       <AboutUs />
       <WhatWeDo />
-      <Project />
+      <ProjectsSection />
       <Support />
       <StarSection />
       <OurEvent />

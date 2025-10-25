@@ -36,3 +36,10 @@ export const programQuery = `*[_type == "program"]{
   details,
 }
 `;
+
+export const projectQuery = `*[_type == "project"]{
+"id": _id,
+title,
+description,
+"image_url": coalesce(image.upload.asset._ref, image.url),
+}`;

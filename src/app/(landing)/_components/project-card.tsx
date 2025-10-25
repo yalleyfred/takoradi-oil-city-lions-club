@@ -1,4 +1,5 @@
 import { ProjectInterface } from "@/types/projects.interface";
+import { handleImageFormat } from "@/utils/format-image";
 import Image from "next/image";
 import React from "react";
 
@@ -11,7 +12,7 @@ export default function ProjectCard({ data }: Readonly<Props>) {
     <article className="group w-full lg:w-[25rem] p-2 flex items-start flex-col justify-center  duration-200 transition-all hover:bg-slate-900/10">
       <div className="rounded-lg cursor-pointer">
         <Image
-          src={data.image_url}
+          src={handleImageFormat(data.image_url)}
           alt="image"
           className="object-cover w-full h-full aspect-square scale-95 hover:scale-100 duration-500 transition-all delay-150 "
           width={2000}
