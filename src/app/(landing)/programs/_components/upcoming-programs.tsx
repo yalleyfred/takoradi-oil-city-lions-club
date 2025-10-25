@@ -1,13 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { upcomingEvents } from "@/constants/program.data";
 import { UpcomingEvent } from "@/types/program.interface";
 import { Event } from "./event";
 
-export default function UpcomingPrograms() {
+interface Props {
+  programs: UpcomingEvent[];
+}
+
+export default function UpcomingPrograms({ programs }: Readonly<Props>) {
   const [currentEventIndex, setCurrentEventIndex] = useState(0);
-  const programs: UpcomingEvent[] = upcomingEvents;
   const [direction, setDirection] = useState<"next" | "prev">("next");
 
   const handleNext = () => {
@@ -47,7 +49,7 @@ export default function UpcomingPrograms() {
           initiatives.
         </p>
       </div>
-      {upcomingEvents.length === 0 ? (
+      {programs.length === 0 ? (
         <div className="h-[50vh] flex items-center justify-center">
           <p className="text-3xl font-bold">No upcoming programs</p>
         </div>

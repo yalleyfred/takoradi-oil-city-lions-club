@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { Testimonial } from "@/types/testimonial.interface";
-import { urlFor } from "@/lib/sanity.image";
+import { handleImageFormat } from "@/utils/format-image";
 
 interface Props {
   testimonials: Testimonial[];
@@ -72,10 +72,6 @@ export default function Testimonials({ testimonials }: Readonly<Props>) {
       mediaQuery.removeEventListener("change", handleChange);
     };
   }, [groups]);
-
-  const handleImageFormat = (image: string): string => {
-    return image.startsWith("image") ? urlFor(image).url() : image;
-  };
 
   return (
     <section className="flex flex-col py-10 gap-16 px-6 text-white justify-center items-center bg-center bg-cover bg-[url('https://images.unsplash.com/photo-1531844251246-9a1bfaae09fc?w=1600&auto=format&fit=crop&q=90')] filter grayscale-25">

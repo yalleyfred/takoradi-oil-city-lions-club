@@ -24,3 +24,15 @@ role,
 quote,
 "image_url": coalesce(image.upload.asset._ref, image.url),
 }`;
+
+export const programQuery = `*[_type == "program"]{
+  "id": _id,
+  title,
+  date,
+  "time": timeRange.start + " - " + timeRange.end,
+  location,
+  description,
+  "image_url": coalesce(image.upload.asset._ref, image.url),
+  details,
+}
+`;
