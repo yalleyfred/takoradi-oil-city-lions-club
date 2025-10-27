@@ -11,6 +11,7 @@ import { EventItem, EventStatus } from "@/types/event.interface";
 import Image from "next/image";
 import { formatDate } from "@/utils/format-date";
 import Badge from "./badge";
+import { handleImageFormat } from "@/utils/format-image";
 
 export function EventDrawer({
   open,
@@ -28,7 +29,7 @@ export function EventDrawer({
           <div className="flex h-full flex-col overflow-hidden">
             <div className="relative h-52 w-full overflow-hidden">
               <Image
-                src={event.event_img}
+                src={handleImageFormat(event.event_img)}
                 alt={event.title}
                 fill
                 sizes="(max-width: 768px) 100vw, 28rem"

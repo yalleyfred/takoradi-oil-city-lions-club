@@ -43,3 +43,14 @@ title,
 description,
 "image_url": coalesce(image.upload.asset._ref, image.url),
 }`;
+
+export const eventQuery = `*[_type == "event"]{
+_id,
+title,
+description,
+"event_img": coalesce(image.upload.asset._ref, image.url),
+date,
+location,
+status,
+"slug": slug.current
+}`;
