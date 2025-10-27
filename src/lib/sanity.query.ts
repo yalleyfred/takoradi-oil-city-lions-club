@@ -1,4 +1,4 @@
-export const teamQuery = `*[_type == "team"]{
+export const teamQuery = `*[_type == "team"] | order(orderRank){
   "id": _id,
   name,
   role,
