@@ -3,10 +3,14 @@
 import SectionHeader from "@/components/section-header";
 import React from "react";
 import ProjectCard from "./project-card";
-import { projects } from "@/constants/projects.data";
 import { motion } from "motion/react";
+import { ProjectInterface } from "@/types/projects.interface";
 
-export default function Project() {
+interface Props {
+  projects: ProjectInterface[];
+}
+
+export default function Project({ projects }: Readonly<Props>) {
   return (
     <motion.section
       initial={{ opacity: 0, y: 40 }}

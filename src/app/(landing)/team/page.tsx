@@ -1,7 +1,10 @@
-import { team } from "@/constants/teams.data";
+import { client } from "@/lib/sanity.client";
 import TeamLists from "./_components/team-list";
+import { teamQuery } from "@/lib/sanity.query";
 
-export default function TeamPage() {
+export default async function TeamPage() {
+  const team = await client.fetch(teamQuery);
+
   return (
     <section className="min-h-screen py-24 flex items-center gap-4 justify-center flex-col">
       <p className="font-semibold text-lg text-blue-600">The team</p>

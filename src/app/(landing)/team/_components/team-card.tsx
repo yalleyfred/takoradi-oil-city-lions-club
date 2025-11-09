@@ -1,3 +1,4 @@
+import { urlFor } from "@/lib/sanity.image";
 import { TeamInterface } from "@/types/team.interface";
 import { Icon, IconifyIcon } from "@iconify/react/dist/iconify.js";
 import Image from "next/image";
@@ -9,7 +10,7 @@ export default function TeamCard({ data }: { readonly data: TeamInterface }) {
     <div className=" w-full lg:w-64 h-fit flex flex-col items-start gap-4 p-1">
       <div className="w-full fit bg-gray-200">
         <Image
-          src={data.image_url}
+          src={urlFor(data.image_url).width(300).height(300).url()}
           alt={data.name + "s photo"}
           width={300}
           height={300}

@@ -1,10 +1,15 @@
 "use client";
 
-import { testimonials } from "@/constants/testimonial.data";
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
+import { Testimonial } from "@/types/testimonial.interface";
+import { handleImageFormat } from "@/utils/format-image";
 
-export function Testimonials() {
+interface Props {
+  testimonials: Testimonial[];
+}
+
+export default function Testimonials({ testimonials }: Readonly<Props>) {
   const [currentGroupIndex, setCurrentGroupIndex] = useState(0);
   const numberPerGroup = 6;
   const groups = Math.ceil(testimonials.length / 6);
@@ -87,10 +92,11 @@ export function Testimonials() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
-            whileHover={{ scale: 1.03 }}>
+            whileHover={{ scale: 1.03 }}
+          >
             <div className="flex items-center gap-6 text-left">
               <img
-                src={testimonial.image}
+                src={handleImageFormat(testimonial.image_url)}
                 alt={testimonial.name}
                 className="w-15 2xl:w-20 h-15 2xl:h-20 object-cover mb-4 mx-auto rounded-full"
               />
@@ -111,7 +117,8 @@ export function Testimonials() {
           <button
             key={index + 1}
             className="relative rounded-full w-4 h-4 cursor-pointer"
-            onClick={() => setCurrentGroupIndex(index)}>
+            onClick={() => setCurrentGroupIndex(index)}
+          >
             <span className="absolute inset-0 rounded-full bg-blue-900 opacity-30"></span>
 
             {index === currentGroupIndex && (

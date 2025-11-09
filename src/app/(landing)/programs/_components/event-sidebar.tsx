@@ -1,4 +1,5 @@
 import { UpcomingEvent } from "@/types/program.interface";
+import { handleImageFormat } from "@/utils/format-image";
 import { format } from "date-fns";
 import { LocationEdit, X } from "lucide-react";
 import { motion } from "motion/react";
@@ -31,13 +32,14 @@ export function EventSidebar({
         initial={{ x: "100%" }}
         animate={{ x: 0 }}
         exit={{ x: "100%" }}
-        transition={{ type: "spring", stiffness: 80, damping: 15 }}>
+        transition={{ type: "spring", stiffness: 80, damping: 15 }}
+      >
         <X
           className="w-8 h-8 hover:cursor-pointer absolute top-3 right-4"
           onClick={() => setIsPopUpOpen(false)}
         />
         <img
-          src={programs[currentIndex].image}
+          src={handleImageFormat(programs[currentIndex].image_url)}
           alt={programs[currentIndex].title}
           className="w-4/5 md:w-3/5 lg:w-7/12 2xl:w-2/4 h-92 md:h-72 lg:h-80 object-cover rounded-md mt-10"
         />

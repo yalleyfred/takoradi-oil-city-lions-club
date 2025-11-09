@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { UpcomingEvent } from "@/types/program.interface";
 import { EventSidebar } from "./event-sidebar";
+import { handleImageFormat } from "@/utils/format-image";
 
 interface EventProps {
   readonly programs: readonly UpcomingEvent[];
@@ -61,12 +62,14 @@ export function Event({
                 initial="enter"
                 animate="center"
                 exit="exit"
-                className="absolute inset-0">
+                className="absolute inset-0"
+              >
                 <button
                   className="w-full h-full hover:cursor-pointer"
-                  onClick={() => setIsPopUpOpen(true)}>
+                  onClick={() => setIsPopUpOpen(true)}
+                >
                   <img
-                    src={programs[currentIndex].image}
+                    src={handleImageFormat(programs[currentIndex].image_url)}
                     alt={programs[currentIndex].title}
                     className="w-full h-full object-cover rounded-md hover:scale-110 transition-all duration-300"
                   />
@@ -79,13 +82,15 @@ export function Event({
             <Button
               variant="outline"
               className="rounded-none hover:cursor-pointer"
-              onClick={handlePrev}>
+              onClick={handlePrev}
+            >
               Prev
             </Button>
             <Button
               variant="outline"
               className="rounded-none hover:cursor-pointer"
-              onClick={handleNext}>
+              onClick={handleNext}
+            >
               Next
             </Button>
           </div>
@@ -99,13 +104,14 @@ export function Event({
             {programs.map((event, index) => (
               <motion.button
                 key={event.id}
-                onClick={() => setCurrentIndex(event.id - 1)}
+                onClick={() => setCurrentIndex(index)}
                 className={cn(
                   "text-left flex gap-4 items-center px-5 py-4 rounded-lg hover:bg-blue-50 hover:cursor-pointer",
                   currentIndex === index ? "relative" : ""
                 )}
                 layout
-                transition={{ duration: 0.4, ease: "easeInOut" }}>
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+              >
                 <AnimatePresence>
                   {currentIndex === index && (
                     <motion.span
