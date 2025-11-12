@@ -1,13 +1,17 @@
-import AboutUs from "./_components/about-us";
-import OurStory from "./_components/our-story";
-import WhyJoinUs from "./_components/why-join-us";
+import Hero from "./_components/hero";
+import Mission from "./_components/mission";
+import Values from "./_components/values";
+import History from "./_components/history";
+import WhyJoin from "./_components/why-join";
 
 export default function AboutPage() {
   return (
-    <>
-      <AboutUs />
-      <OurStory />
-      <WhyJoinUs />
-    </>
+    <main className="bg-white">
+      <Hero />
+      <Mission />
+      <Values />
+      <History />
+      <WhyJoin />
+    </main>
   );
 }

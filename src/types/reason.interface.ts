@@ -4,5 +4,5 @@ export interface WhyJoinUs {
 	title: string;
 	description: string;
 	icon: LucideIcon;
-    color: string;
+	color: string;
 }
