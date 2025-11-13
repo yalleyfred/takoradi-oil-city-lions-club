@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import {
@@ -22,6 +22,12 @@ import {
 } from "@/validations/contact-form-validations";
 
 export default function ContactForm() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: "success" | "error" | null;
+    message: string;
+  }>({ type: null, message: "" });
+
   const form = useForm<ContactFormData>({
     resolver: zodResolver(ContactFormSchema),
     defaultValues: {
@@ -36,8 +42,52 @@ export default function ContactForm() {
 
   const { handleSubmit } = form;
 
-  const onSubmit = (data: ContactFormData) => {
-    console.log("Form Data:", data);
+  const onSubmit = async (data: ContactFormData) => {
+    setIsLoading(true);
+    setSubmitStatus({ type: null, message: "" });
+
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          firstName: data.first_name,
+          lastName: data.last_name,
+          email: data.email,
+          phone: data.phone,
+          message: data.message,
+          agreedToPrivacy: data.privacy_policy,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus({
+          type: "success",
+          message:
+            result.message ||
+            "Your message has been sent successfully! Check your email for confirmation.",
+        });
+        form.reset();
+      } else {
+        setSubmitStatus({
+          type: "error",
+          message: result.error || "Failed to send message. Please try again.",
+        });
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      setSubmitStatus({
+        type: "error",
+        message:
+          "An error occurred while sending your message. Please try again.",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -205,9 +255,23 @@ export default function ContactForm() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           type="submit"
-          className="bg-blue-600 hover:cursor-pointer w-full text-white px-6 py-2 rounded-md hover:bg-blue-700 transition-colors duration-300">
-          Send Message
+          disabled={isLoading}
+          className="bg-blue-600 hover:cursor-pointer w-full text-white px-6 py-2 rounded-md hover:bg-blue-700 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed">
+          {isLoading ? "Sending..." : "Send Message"}
         </motion.button>
+
+        {submitStatus.type && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className={`w-full p-4 rounded-md text-sm font-medium ${
+              submitStatus.type === "success"
+                ? "bg-green-50 text-green-800 border border-green-200"
+                : "bg-red-50 text-red-800 border border-red-200"
+            }`}>
+            {submitStatus.message}
+          </motion.div>
+        )}
       </motion.form>
     </Form>
   );
